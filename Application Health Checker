@@ -1,0 +1,17 @@
+import requests
+
+# Application URL to check
+URL = 'https://example.com'
+
+def check_application_health(url):
+    try:
+        response = requests.get(url, timeout=5)
+        if response.status_code == 200:
+            print(f'{url} is UP and running.')
+        else:
+            print(f'{url} is DOWN. Status code: {response.status_code}')
+    except requests.exceptions.RequestException as e:
+        print(f'{url} is DOWN. Error: {e}')
+
+if __name__ == "__main__":
+    check_application_health(URL)
